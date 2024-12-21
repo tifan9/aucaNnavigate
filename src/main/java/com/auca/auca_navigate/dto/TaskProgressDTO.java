@@ -1,30 +1,23 @@
-package com.auca.auca_navigate.domain;
+package com.auca.auca_navigate.dto;
 
-import jakarta.persistence.*;
+import com.auca.auca_navigate.domain.TaskProgress;
 
-@Entity
-public class TaskProgress {
-    // TODO: Implement progress tracking
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class TaskProgressDTO {
     private int id;
-    @OneToOne
-    @JoinColumn(name = "student_id", referencedColumnName = "id")
-    private Student student;
+    private String studentName;
     private boolean schoolTour;
     private boolean accessPolicies;
     private boolean accountsSetup;
     private boolean registration;
 
-    public TaskProgress() {}
-
-    public TaskProgress(int id, Student student, boolean schoolTour, boolean accessPolicies, boolean accountsSetup, boolean registration) {
-        this.id = id;
-        this.student = student;
-        this.schoolTour = schoolTour;
-        this.accessPolicies = accessPolicies;
-        this.accountsSetup = accountsSetup;
-        this.registration = registration;
+    // Constructor
+    public TaskProgressDTO(TaskProgress taskProgress) {
+        this.id = taskProgress.getId();
+        this.studentName = taskProgress.getStudent().getFullName();
+        this.schoolTour = taskProgress.isSchoolTour();
+        this.accessPolicies = taskProgress.isAccessPolicies();
+        this.accountsSetup = taskProgress.isAccountsSetup();
+        this.registration = taskProgress.isRegistration();
     }
 
     public int getId() {
@@ -35,12 +28,12 @@ public class TaskProgress {
         this.id = id;
     }
 
-    public Student getStudent() {
-        return student;
+    public String getStudentName() {
+        return studentName;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentName(String studentName) {
+        this.studentName = studentName;
     }
 
     public boolean isSchoolTour() {

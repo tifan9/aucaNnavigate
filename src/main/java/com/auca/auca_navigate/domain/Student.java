@@ -16,18 +16,19 @@ public class Student {
     private String email;
     private String  phone;
     private String password;
-
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    private TaskProgress taskProgress;
     public Student() {
     }
 
-    public Student(String password, String phone, String email, String fullName, int id) {
-        this.password = password;
-        this.phone = phone;
-        this.email = email;
-        this.fullName = fullName;
+    public Student(int id, String fullName, String email, String phone, String password, TaskProgress taskProgress) {
         this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.taskProgress = taskProgress;
     }
-    // Getters and setters
 
     public int getId() {
         return id;
@@ -67,6 +68,14 @@ public class Student {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public TaskProgress getTaskProgress() {
+        return taskProgress;
+    }
+
+    public void setTaskProgress(TaskProgress taskProgress) {
+        this.taskProgress = taskProgress;
     }
 }
 
