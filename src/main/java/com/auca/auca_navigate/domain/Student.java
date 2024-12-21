@@ -1,41 +1,40 @@
 package com.auca.auca_navigate.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
 
 @Entity
-public class Students {
+public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_generator")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(
             name = "student_generator",
             sequenceName = "student_sequence_name",
             allocationSize = 1
     )
-    private int stId;
+    private int id;
     private String fullName;
     private String email;
     private String  phone;
     private String password;
 
-    public Students() {
+    public Student() {
     }
 
-    public Students(String password, String phone, String email, String fullName, int stId) {
+    public Student(String password, String phone, String email, String fullName, int id) {
         this.password = password;
         this.phone = phone;
         this.email = email;
         this.fullName = fullName;
-        this.stId = stId;
+        this.id = id;
     }
     // Getters and setters
 
-    public int getStId() {
-        return stId;
+    public int getId() {
+        return id;
     }
 
-    public void setStId(int stId) {
-        this.stId = stId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getFullName() {
