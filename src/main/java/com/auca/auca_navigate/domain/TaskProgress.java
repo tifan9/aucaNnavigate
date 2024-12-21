@@ -1,5 +1,6 @@
 package com.auca.auca_navigate.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +11,7 @@ public class TaskProgress {
     private int id;
     @OneToOne
     @JoinColumn(name = "student_id", referencedColumnName = "id")
+    @JsonBackReference
     private Student student;
     private boolean schoolTour;
     private boolean accessPolicies;

@@ -1,5 +1,6 @@
 package com.auca.auca_navigate.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -17,6 +18,7 @@ public class Student {
     private String  phone;
     private String password;
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private TaskProgress taskProgress;
     public Student() {
     }
