@@ -38,6 +38,12 @@ public class TaskProgressController {
                 .map(TaskProgressDTO::new)
                 .collect(Collectors.toList());
     }
+    // update the progress
+    @PutMapping("/update/{id}")
+    public ResponseEntity<TaskProgress> updateTaskProgress(@PathVariable int id, @RequestBody TaskProgress updateTaskProgress) {
+        TaskProgress updatedProgress = taskProgressService.updateTaskProgress(id, updateTaskProgress);
+        return ResponseEntity.ok(updatedProgress);
+    }
 
     // Delete progress by ID
     @DeleteMapping("/delete/{id}")

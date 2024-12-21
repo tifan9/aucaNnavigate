@@ -21,6 +21,19 @@ public class TaskProgressService {
     public TaskProgress saveOrUpdateProgress(TaskProgress taskProgress) {
         return taskProgressRepo.save(taskProgress);
     }
+    // update progress
+    public TaskProgress updateTaskProgress(int id, TaskProgress updateTaskProgress){
+        return taskProgressRepo.findById(id).map(taskProgress -> {
+            taskProgress.setSchoolTour(updateTaskProgress.isSchoolTour());
+            taskProgress.setAccessPolicies(updateTaskProgress.isAccessPolicies());
+            taskProgress.setAccountsSetup(updateTaskProgress.isAccountsSetup());
+            taskProgress.setRegistration(updateTaskProgress.isRegistration());
+            return taskProgressRepo.save(taskProgress);
+        }).orElseGet(() -> {
+            updateTaskProgress.setId(id);
+            return taskProgressRepo.save(updateTaskProgress);
+        });
+    }
 
     // Get all progress records
     public List<TaskProgress> getAllProgress() {
