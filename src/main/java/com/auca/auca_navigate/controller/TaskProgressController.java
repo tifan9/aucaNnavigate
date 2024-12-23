@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/task-progress")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TaskProgressController {
     @Autowired
     private TaskProgressService taskProgressService;

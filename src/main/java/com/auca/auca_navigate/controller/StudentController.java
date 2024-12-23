@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/student")
+@CrossOrigin(origins = "http://localhost:3000")
 public class StudentController {
     // TODO: Implement student-related endpoints
     // GET, POST, PUT, DELETE for /api/students
