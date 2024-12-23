@@ -24,14 +24,14 @@ public class TaskProgressController {
     }
 
     // Save or update progress
-    @PostMapping
+    @PostMapping("/save_progress")
     public ResponseEntity<TaskProgress> saveOrUpdateProgress(@RequestBody TaskProgress taskProgress) {
         TaskProgress savedProgress = taskProgressService.saveOrUpdateProgress(taskProgress);
         return ResponseEntity.ok(savedProgress);
     }
 
     // Get all progress records
-    @GetMapping
+    @GetMapping("/all_progress")
     public List<TaskProgressDTO> getAllProgress() {
         List<TaskProgress> taskProgressList = taskProgressService.getAllProgress();
         return taskProgressList.stream()
