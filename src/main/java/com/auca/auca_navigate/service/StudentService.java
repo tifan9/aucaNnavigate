@@ -21,8 +21,8 @@ public class StudentService {
                 studentRepo.save(student);
             }
     }
-    public Student getStudentById(int id){
-        return studentRepo.findById(id).orElse(null);
+    public Student getStudentById(int studentId){
+        return studentRepo.findById(studentId).orElse(null);
     }
     public void deleteStudent(Student student){
         studentRepo.delete(student);
@@ -31,15 +31,15 @@ public class StudentService {
 
 
 
-    public void deleteStudent(int id){
-        studentRepo.deleteById(id);
+    public void deleteStudent(int studentId){
+        studentRepo.deleteById(studentId);
     }
     public List<Student> allStudents(){
         return studentRepo.findAll();
     }
     @Transactional
-    public Student updateStudent(int id,Student updateStudent){
-        Student  existingStudent = studentRepo.findById(id).orElseThrow(()->new IllegalArgumentException("Student not found"));
+    public Student updateStudent(int studentId,Student updateStudent){
+        Student  existingStudent = studentRepo.findById(studentId).orElseThrow(()->new IllegalArgumentException("Student not found"));
         existingStudent.setFullName(updateStudent.getFullName());
         existingStudent.setEmail(updateStudent.getEmail());
         existingStudent.setPhone(updateStudent.getPhone());

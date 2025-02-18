@@ -1,36 +1,17 @@
-package com.auca.auca_navigate.domain;
-
-import jakarta.persistence.*;
+package com.auca.auca_navigate.dto;
 
 import java.time.LocalDateTime;
 
-@Entity
-public class Event {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long eventId;
+public class EventDTO {
     private String eventName;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
     private String hostCampus;
     private String coordinator;
-    @Column(length = 1000)
     private String description;
-    @ManyToOne
-    @JoinColumn(name = "studentId", referencedColumnName = "studentId")
-    private Student student;
-    public Event() {
-    }
+    private int studentId;
 
-    public Event(String coordinator, String description, LocalDateTime endDateTime, Long eventId, String eventName, String hostCampus, LocalDateTime startDateTime, Student student) {
-        this.coordinator = coordinator;
-        this.description = description;
-        this.endDateTime = endDateTime;
-        this.eventId = eventId;
-        this.eventName = eventName;
-        this.hostCampus = hostCampus;
-        this.startDateTime = startDateTime;
-        this.student = student;
+    public EventDTO() {
     }
 
     public String getCoordinator() {
@@ -57,14 +38,6 @@ public class Event {
         this.endDateTime = endDateTime;
     }
 
-    public Long getEventId() {
-        return eventId;
-    }
-
-    public void setEventId(Long eventId) {
-        this.eventId = eventId;
-    }
-
     public String getEventName() {
         return eventName;
     }
@@ -89,11 +62,11 @@ public class Event {
         this.startDateTime = startDateTime;
     }
 
-    public Student getStudent() {
-        return student;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 }

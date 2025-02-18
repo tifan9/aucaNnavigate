@@ -22,7 +22,7 @@ public class StudentController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Student student){
         if(student !=null){
-            Student std = studentService.getStudentById(student.getId());
+            Student std = studentService.getStudentById(student.getStudentId());
             if(std ==  null){
                 studentService.saveStudent(student);
                 return new ResponseEntity<>("Student Saved!", HttpStatus.OK);

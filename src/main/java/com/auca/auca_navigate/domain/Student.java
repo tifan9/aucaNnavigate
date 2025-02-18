@@ -3,6 +3,8 @@ package com.auca.auca_navigate.domain;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Student {
     @Id
@@ -12,40 +14,24 @@ public class Student {
             sequenceName = "student_sequence_name",
             allocationSize = 1
     )
-    private int id;
+    private int studentId;
     private String fullName;
     private String email;
-    private String  phone;
+    private String phone;
     private String password;
-    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private TaskProgress taskProgress;
+    @OneToMany(mappedBy = "student")
+    private List<Orientation> orientations;
+
     public Student() {
     }
 
-    public Student(int id, String fullName, String email, String phone, String password, TaskProgress taskProgress) {
-        this.id = id;
-        this.fullName = fullName;
+    public Student(String email, String fullName, List<Orientation> orientations, String password, String phone, int studentId) {
         this.email = email;
-        this.phone = phone;
-        this.password = password;
-        this.taskProgress = taskProgress;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
         this.fullName = fullName;
+        this.orientations = orientations;
+        this.password = password;
+        this.phone = phone;
+        this.studentId = studentId;
     }
 
     public String getEmail() {
@@ -56,12 +42,20 @@ public class Student {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public List<Orientation> getOrientations() {
+        return orientations;
+    }
+
+    public void setOrientations(List<Orientation> orientations) {
+        this.orientations = orientations;
     }
 
     public String getPassword() {
@@ -72,12 +66,19 @@ public class Student {
         this.password = password;
     }
 
-    public TaskProgress getTaskProgress() {
-        return taskProgress;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTaskProgress(TaskProgress taskProgress) {
-        this.taskProgress = taskProgress;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 }
-
